@@ -2,4 +2,14 @@
 //Testing.EntryPoint();
 
 Threader threader = new Threader();
-threader.IncreaseCount();
+
+Thread t1 = new Thread(threader.IncreaseCount);
+t1.Start();
+
+//Testing the behaviour of the main thread:
+while (threader.exec)
+{
+    WriteLine($"Main thread iteration: {threader.count}");
+    if (threader.count > 100)
+        threader.exec = false;
+}
