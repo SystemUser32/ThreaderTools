@@ -12,4 +12,6 @@ while (threader.exec)
     WriteLine($"Main thread iteration: {threader.count}");
     if (threader.count > 100)
         threader.exec = false;
+
+    Thread.Sleep(threader.sleepTime);//Not for serious purposes
 }
