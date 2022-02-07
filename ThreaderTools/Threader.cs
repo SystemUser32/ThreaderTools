@@ -9,6 +9,8 @@ internal class Threader
 
     public void IncreaseCount() {
     
+        Stopwatch watch = Stopwatch.StartNew();
+        watch.Start();
         while(exec) {
             ForegroundColor = ConsoleColor.Red;
             count++;
@@ -20,10 +22,15 @@ internal class Threader
             Thread.Sleep(sleepTime);
         }
 
+        watch.Stop();
+        WriteLine($"\"Threader.IncreaseCount\" took {watch.ElapsedMilliseconds}ms");
+
     }
 
     public void Helper() {
 
+        Stopwatch watch = Stopwatch.StartNew();
+        watch.Start();
         while (exec) {
             ForegroundColor = ConsoleColor.Blue;
             WriteLine($"Helper thread iteration: {count}");
@@ -32,6 +39,9 @@ internal class Threader
 
             Thread.Sleep(sleepTime);
         }
+
+        watch.Stop();
+        WriteLine($"\"Threader.Helper\" took {watch.ElapsedMilliseconds}ms");
 
     }
 }
